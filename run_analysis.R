@@ -47,8 +47,12 @@ if(!file.exists('./UCI HAR Dataset.zip')){download.file(Url,'./UCI HAR Dataset.z
   names(all_data_bind) <- gsub('Freq\\.',"Frequency.",names(all_data_bind))
   names(all_data_bind) <- gsub('Freq$',"Frequency",names(all_data_bind))
   
-  # 5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+  str(all_data_bind)
+  write.table (all_data_bind,"/Documents/Project4/tidydata1.txt", row.names = FALSE)
+  
+   # 5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
   tidydata2 <- aggregate(.~ Subject + Activities, all_data_bind, mean)
   tidydata2 <- tidydata2 [order(tidydata2$Subject, tidydata2$Activities),]
-  write.table(tidydata2, file = "tidydata.txt",row.names = FALSE)
+  write.table(tidydata2, "/Documents/Project4/tidydata.txt", row.names = FALSE)
+
 
